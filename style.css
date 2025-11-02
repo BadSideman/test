@@ -1,0 +1,450 @@
+/* ========================================= */
+/* ГЛОБАЛЬНЫЕ НАСТРОЙКИ И ТИПОГРАФИКА */
+/* ========================================= */
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(232, 239, 240) 0%, rgba(178, 235, 238, 0.7) 100%);
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    text-align: center;
+    width: 100%;
+    max-width: 550px;
+}
+
+h1 {
+    color: rgba(0, 77, 64, 0.9);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* ========================================= */
+/* СТИЛИ ДЛЯ ПРИВЕТСТВИЯ И ПРАВИЛ */
+/* ========================================= */
+#welcome-rules-section {
+    background-color: rgba(241, 248, 233, 0.85); /* Светло-зеленый фон */
+    border: 1px solid rgba(178, 235, 238, 0.6); /* Бирюзовая рамка */
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px; /* Отступ от следующего блока */
+    text-align: left; /* Текст по левому краю */
+}
+
+#welcome-rules-section p {
+    font-size: 16px;
+    color: rgba(38, 50, 56, 0.85);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+#welcome-rules-section h2 {
+    font-size: 20px;
+    color: rgba(0, 77, 64, 0.85);
+    margin-bottom: 10px;
+    border-bottom: 2px solid rgba(128, 191, 196, 0.7);
+    padding-bottom: 5px;
+}
+
+#welcome-rules-section ul {
+    list-style-type: disc; /* Маркированный список */
+    padding-left: 25px; /* Отступ для маркеров */
+    margin: 0;
+}
+
+#welcome-rules-section li {
+    font-size: 15px;
+    color: rgba(51, 51, 51, 0.8);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* ========================================= */
+/* СТИЛИ ДЛЯ ТАЙМЕРА */
+/* ========================================= */
+#timer-container {
+    text-align: right;
+    margin-bottom: 15px;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    border: 1px solid rgba(178, 235, 238, 0.5);
+    display: inline-block;
+}
+
+#timer-display {
+    font-size: 16px;
+    color: rgba(0, 77, 64, 0.8);
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ========================================= */
+/* СТИЛИ ДЛЯ ФОРМЫ ВВОДА ФИО */
+/* ========================================= */
+#user-info-form {
+    margin-bottom: 25px;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid rgba(178, 235, 238, 0.6);
+    border-radius: 5px;
+    background-color: rgba(241, 248, 233, 0.85);
+}
+
+#user-info-form h2 {
+    color: rgba(0, 77, 64, 0.85);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid rgba(128, 191, 196, 0.7);
+    padding-bottom: 6px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: rgba(51, 51, 51, 0.8);
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid rgba(167, 199, 231, 0.7);
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.form-group input[type="text"]:focus {
+    border-color: rgba(66, 165, 245, 0.8);
+    outline: none;
+}
+
+#start-test-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 121, 107, 0.85);
+    color: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
+    margin-top: 15px;
+}
+
+#start-test-button:hover {
+    background-color: rgba(0, 77, 64, 0.9);
+    transform: translateY(-1px);
+}
+
+/* ========================================= */
+/* СТИЛИ ДЛЯ ВОПРОСОВ И ОТВЕТОВ */
+/* ========================================= */
+#question-container {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#question-number {
+    font-size: 15px;
+    color: rgba(51, 51, 51, 0.7);
+    font-style: italic;
+    text-align: left;
+}
+
+/* БЛОК: НАВИГАЦИЯ ПО НОМЕРАМ ВОПРОСОВ */
+#question-nav-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
+    border: 1px solid rgba(178, 235, 238, 0.5);
+}
+
+.question-nav-item {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    border: 2px solid rgba(167, 199, 231, 0.7); /* Синий контур по умолчанию */
+    color: rgba(0, 77, 64, 0.8);
+}
+
+/* Стили для АКТИВНОГО вопроса */
+.question-nav-item.active {
+    background-color: rgba(204, 204, 204, 0.8); /* Серый фон */
+    color: #333; 
+    border-color: #42a5f5; /* Синяя рамка */
+    border-width: 3px; 
+    box-shadow: 0 0 8px rgba(66, 165, 245, 0.7); /* Синяя тень */
+}
+
+/* Отвеченный вопрос (синий) */
+.question-nav-item.answered {
+    background-color: rgba(66, 165, 245, 0.8);
+    border-color: rgba(66, 165, 245, 1);
+    color: white;
+}
+
+/* Пропущенный вопрос (белый) */
+.question-nav-item.skipped {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(204, 204, 204, 0.8);
+    color: rgba(0, 77, 64, 0.8);
+}
+
+/* При наведении */
+.question-nav-item:not(.disabled):hover {
+    background-color: rgba(227, 242, 253, 0.9);
+    border-color: rgba(66, 165, 245, 0.9);
+}
+
+/* Отключенные номера */
+.question-nav-item.disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
+
+#question-text {
+    font-size: 17px;
+    color: rgba(38, 50, 56, 0.85);
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Стили для чекбоксов и их меток */
+.answer-option-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 12px;
+    border: 1px solid rgba(204, 204, 204, 0.7);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.answer-option-wrapper:hover:not(.selected):not(.correct):not(.incorrect):not(.disabled) {
+    background-color: rgba(240, 240, 240, 0.9);
+    border-color: rgba(158, 158, 158, 0.8);
+}
+
+/* Стиль для выбранного ответа (подсвечивает всю строку) */
+.answer-option-wrapper.selected {
+    background-color: rgba(227, 242, 253, 0.9);
+    border-color: rgba(66, 165, 245, 0.8);
+    color: rgba(30, 136, 229, 0.9);
+}
+
+/* Стиль для правильного ответа */
+.answer-option-wrapper.correct {
+    background-color: rgba(200, 230, 201, 0.9);
+    border-color: rgba(76, 175, 80, 0.8);
+    color: rgba(27, 94, 32, 0.9);
+}
+
+/* Стиль для неправильного ответа */
+.answer-option-wrapper.incorrect {
+    background-color: rgba(255, 235, 238, 0.9);
+    border-color: rgba(239, 83, 80, 0.8);
+    color: rgba(183, 28, 28, 0.9);
+}
+
+/* Стиль для отключенных ответов */
+.answer-option-wrapper.disabled {
+    cursor: default;
+    opacity: 0.6;
+}
+
+/* Скрываем стандартные чекбоксы */
+.answer-option-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+/* Кастомный КВАДРАТ */
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(66, 165, 245, 0.8); /* Синяя рамка */
+    margin-right: 15px;
+    background-color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 3px; /* Немного скругляем углы */
+}
+
+/* Символ галочки внутри чекбокса */
+.custom-checkbox::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px; /* Слегка опущена для лучшего центрирования */
+    left: 6px;
+    width: 6px;
+    height: 12px;
+    border: solid rgb(209, 11, 11); /* Цвет галочки */
+    border-width: 0 3px 3px 0; /* Создает угол галочки */
+    transform: rotate(45deg) scale(0); /* По умолчанию скрыта и повернута */
+    transition: transform 0.2s ease-in-out;
+    background-color: transparent; /* Убедимся, что галочка не имеет фона */
+}
+
+/* Показываем галочку, когда чекбокс выбран */
+.answer-option-wrapper.selected .custom-checkbox::after {
+    transform: rotate(45deg) scale(1); /* Галочка становится видимой */
+}
+
+/* Стиль для правильного чекбокса */
+.answer-option-wrapper.correct .custom-checkbox {
+    border-color: rgba(76, 175, 80, 0.8); /* Зеленая рамка */
+}
+/* Галочка для правильного ответа */
+.answer-option-wrapper.correct .custom-checkbox::after {
+    border-color: rgba(76, 175, 80, 0.9); /* Зеленая галочка */
+}
+
+/* Стиль для неправильного чекбокса */
+.answer-option-wrapper.incorrect .custom-checkbox {
+    border-color: rgba(239, 83, 80, 0.8); /* Красная рамка */
+}
+/* Галочка для неправильного ответа */
+.answer-option-wrapper.incorrect .custom-checkbox::after {
+    border-color: rgba(239, 83, 80, 0.9); /* Красная галочка */
+}
+
+/* НОВАЯ СЕКЦИЯ: НИЖНЯЯ НАВИГАЦИЯ */
+#bottom-navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    border-top: 1px solid rgba(200, 230, 201, 0.5); /* Разделитель */
+    padding-top: 15px;
+}
+
+#bottom-navigation-buttons button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
+    flex-grow: 1;
+    margin: 0 5px;
+    border: 1px solid rgba(66, 165, 245, 0.8); /* Общая рамка */
+}
+
+/* Кнопка "Назад" */
+#prev-button {
+    background-color: rgba(227, 242, 253, 0.9); /* Светло-голубой */
+    color: rgba(30, 136, 229, 0.9);
+}
+
+#prev-button:hover {
+    background-color: rgba(144, 202, 249, 0.8);
+}
+
+/* Кнопка "Следующий/Завершить" */
+#next-button {
+    background-color: rgba(0, 121, 107, 0.85);
+    color: rgba(255, 255, 255, 0.95);
+    border: none;
+}
+
+#next-button:hover {
+    background-color: rgba(0, 77, 64, 0.9);
+    transform: translateY(-1px);
+}
+
+/* ========================================= */
+/* РЕЗУЛЬТАТЫ */
+/* ========================================= */
+#result-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid rgba(0, 121, 107, 0.7);
+    border-radius: 6px;
+    background-color: rgba(224, 242, 241, 0.85);
+}
+
+#result-container h2 {
+    color: rgba(0, 77, 64, 0.85);
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+#score {
+    font-size: 24px;
+    font-weight: 900;
+    color: rgba(46, 125, 50, 0.9);
+    margin-bottom: 8px;
+}
+
+#feedback {
+    font-size: 15px;
+    color: rgba(55, 71, 79, 0.8);
+    font-style: italic;
+}
+
+/* СТИЛЬ ДЛЯ СООБЩЕНИЯ, ЧТО ТЕСТ УЖЕ ПРОЙДЕН */
+#already-passed-message {
+    background-color: rgba(255, 235, 238, 0.9); /* Светло-красный фон */
+    border: 1px solid rgba(239, 83, 80, 0.7); /* Красная рамка */
+    color: rgba(183, 28, 28, 0.9); /* Красный текст */
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#already-passed-message p {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+}
+
+#logo {
+    text-align: left;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест порверки знаий</title>
+    <link rel="stylesheet" href="style.css"
+</head>
+<body>
+    <div class="container">
+        <div id="logo">
+            <img src="logo.png" alt="Логотип компании">
+        </div>
+        <!-- БЛОК СООБЩЕНИЯ О ПРОХОЖДЕНИИ -->
+        <div id="already-passed-message" style="display: none;">
+            <p>Вы уже прошли этот тест.</p>
+            <p>Ваши результаты были сохранены.</p>
+            <!-- Опционально: кнопка для повторного просмотра результатов, если они где-то сохраняются -->
+        </div>
+        <!-- КОНЕЦ БЛОКА СООБЩЕНИЯ -->
+
+        <!-- ПРИВЕТСТВИЕ И ПРАВИЛА -->
+        <div id="welcome-rules-section">
+            <p>Добро пожаловать! Пожалуйста, пройдите тест для оценки ваших знаний.</p>
+            <h2>Правила прохождения:</h2>
+            <ul>
+                <li>Тест состоит из 12 вопросов.</li>
+                <li>На прохождение теста дается 5 минут.</li>
+                <li>Вы можете переходить между вопросами с помощью кнопок "Назад" и "Следующий" или нажать на нужный вопрос в навигационной панели</li>
+                <li>В конце теста будут показаны ваши результаты</li>
+                <li>Тест можно пройти только один раз</li>
+            </ul>
+        </div>
+        <!-- КОНЕЦ ПРИВЕТСТВИЯ -->
+
+        <div id="user-info-form">
+            <h2>Введите ваши данные</h2>
+            <div class="form-group">
+                <label for="surname">Фамилия:</label>
+                <input type="text" id="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="patronymic">Отчество:</label>
+                <input type="text" id="patronymic">
+            </div>
+            <button id="start-test-button">Начать тест</button>
+        </div>
+
+        <div id="timer-container" style="display: none;">
+            <p id="timer-display">Время: 00:00</p>
+        </div>
+
+        <div id="question-container" style="display: none;">
+            <div class="question-header">
+                <div id="question-number"></div>
+            </div>
+            <div id="question-nav-bar">
+                <!-- Номера вопросов будут сгенерированы сюда -->
+            </div>
+            <p id="question-text"></p>
+            <div id="answer-options">
+                <!-- Варианты ответов будут добавлены сюда -->
+            </div>
+            
+            <div id="bottom-navigation-buttons">
+                <button id="prev-button">Назад</button>
+                <button id="next-button">Следующий вопрос</button> 
+            </div>
+        </div>
+
+        <div id="result-container" style="display: none;">
+            <h2>Результаты теста</h2>
+            <p id="score"></p>
+            <p id="feedback"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
