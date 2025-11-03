@@ -126,18 +126,17 @@ const testQuestions = [
     },
     {
         id: 11,
-        question: "Чем обязательно должен быть укомплектован карьерный автосамосвал, находящийся в эксплуатации? (Выберите несколько вариантов)",
+        question: "Чем обязательно должен быть укомплектован карьерный автосамосвал, находящийся в эксплуатации?",
         options: [
             "Исправными средствами пожаротушения",
-            "Знаками аварийной остановки – 2 шт",
+            "Знаками аварийной остановки – 2 шт и противооткатными упорами – 2 шт",
             "Медицинской аптечкой ",
-            "Противооткатными упорами – 2 шт",
             "Зеркалом заднего вида – 2 шт",
             "Устройством блокировки (сигнализатором) поднятия кузова под ВЛ (СПВЛ)",
             "Средствами связи (радиостанцией)",
             "Комплект инструмента, предусмотренный заводом-изготовителем",
         ],
-        correctAnswer: ["Знаками аварийной остановки – 2 шт", "Противооткатными упорами – 2 шт"] 
+        correctAnswer: ["Знаками аварийной остановки – 2 шт и противооткатными упорами – 2 шт"] 
     },
     {
         id: 12,
@@ -434,24 +433,53 @@ function selectAnswer(event) {
     const questionId = parseInt(targetWrapper.dataset.id);
     const selectedOption = targetWrapper.dataset.option;
     const checkboxInput = targetWrapper.querySelector('input[type="checkbox"]'); 
+    const question = testQuestions.find(q => q.id === questionId); // Находим сам вопрос
 
-    const currentSelectedAnswers = selectedAnswers[questionId] || [];
+    let currentSelectedAnswers = selectedAnswers[questionId] || [];
 
-    if (checkboxInput.checked) {
-        // Чекбокс был отмечен, а теперь мы кликнули, чтобы его снять
-        const indexToRemove = currentSelectedAnswers.indexOf(selectedOption);
-        if (indexToRemove > -1) {
-            currentSelectedAnswers.splice(indexToRemove, 1);
+    // --- ЛОГИКА ДЛЯ ОГРАНИЧЕНИЯ ВЫБОРА ОДНОГО ОТВЕТА ---
+    if (!question.isMultipleChoice) { // Если это вопрос с одним выбором
+        // Если кликнули на уже выбранный ответ, снимаем его
+        if (checkboxInput.checked) {
+            const indexToRemove = currentSelectedAnswers.indexOf(selectedOption);
+            if (indexToRemove > -1) {
+                currentSelectedAnswers.splice(indexToRemove, 1);
+            }
+            checkboxInput.checked = false; 
+            targetWrapper.classList.remove('selected');
+        } else {
+            // Если кликнули на новый ответ:
+            // 1. Снимаем галочку и класс 'selected' со ВСЕХ ответов этого вопроса
+            answerOptionsElement.querySelectorAll(`.answer-option-wrapper[data-id="${questionId}"]`).forEach(wrapper => {
+                // Снимаем только если это НЕ тот wrapper, на который кликнули
+                if (wrapper !== targetWrapper) { 
+                    wrapper.classList.remove('selected');
+                    wrapper.querySelector('input[type="checkbox"]').checked = false;
+                }
+            });
+            
+            // 2. Выбираем новый ответ
+            currentSelectedAnswers = [selectedOption]; // Обновляем массив, оставляя только новый выбор
+            checkboxInput.checked = true; 
+            targetWrapper.classList.add('selected');
         }
-        checkboxInput.checked = false; 
-        targetWrapper.classList.remove('selected');
-    } else {
-        // Чекбокс не был отмечен, а теперь мы кликнули, чтобы его отметить
-        if (!currentSelectedAnswers.includes(selectedOption)) {
-            currentSelectedAnswers.push(selectedOption);
+    } else { // Если это вопрос с множественным выбором
+        if (checkboxInput.checked) {
+            // Чекбокс был отмечен, а теперь мы кликнули, чтобы его снять
+            const indexToRemove = currentSelectedAnswers.indexOf(selectedOption);
+            if (indexToRemove > -1) {
+                currentSelectedAnswers.splice(indexToRemove, 1);
+            }
+            checkboxInput.checked = false; 
+            targetWrapper.classList.remove('selected');
+        } else {
+            // Чекбокс не был отмечен, а теперь мы кликнули, чтобы его отметить
+            if (!currentSelectedAnswers.includes(selectedOption)) {
+                currentSelectedAnswers.push(selectedOption);
+            }
+            checkboxInput.checked = true; 
+            targetWrapper.classList.add('selected');
         }
-        checkboxInput.checked = true; 
-        targetWrapper.classList.add('selected');
     }
     
     selectedAnswers[questionId] = currentSelectedAnswers;
