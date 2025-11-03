@@ -24,7 +24,7 @@ const feedbackElement = document.getElementById('feedback');
 const bottomNavigation = document.getElementById('bottom-navigation-buttons');
 const questionNavBar = document.getElementById('question-nav-bar');
 
-let fullName = '';
+let fullName = ''; //Полное имя пользователя
 const testQuestions = [
     {
         id: 1,
@@ -150,8 +150,8 @@ const testQuestions = [
     }
 ];
 
-let currentQuestionIndex = 0;
-let score = 0;
+let currentQuestionIndex = 0; // отслеживание текущего вопроса
+let score = 0; // хранит правильные ответы
 // selectedAnswers теперь хранит массив выбранных ответов: { questionId: [selectedOption1, selectedOption2, ...] }
 let selectedAnswers = {}; 
 let questionNavigationItems = [];
@@ -546,13 +546,13 @@ function showResults() {
 
 function getFeedback(percentage) {
     if (percentage === 100) {
-        return 'Отлично! Тест пройден!';
+        return ' ';
     } else if (percentage >= 75) {
-        return 'Хорошо! Тест пройден';
+        return ' ';
     } else if (percentage >= 50) {
-        return 'Удовлетворительно. Требуется дальнейшее обучение.';
+        return ' ';
     } else {
-        return 'Неудовлетворительно. Тест не пройден';
+        return ' ';
     }
 }
 
