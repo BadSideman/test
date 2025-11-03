@@ -378,7 +378,7 @@ let questionNavigationItems = [];
 // --- Таймер ---
 let timerInterval = null;
 let timeRemaining = 0;
-const TOTAL_TEST_TIME_SECONDS = 300; // 3 минуты
+const TOTAL_TEST_TIME_SECONDS = 900; // 3 минуты
 
 // --- Функция для проверки localStorage ---
 function checkTestCompletion() {
