@@ -781,7 +781,7 @@ function showResults() {
     feedbackElement.textContent = getFeedback(percentage);
 
     if (unansweredQuestions.length > 0) {
-        feedbackElement.textContent += ` Не отвечено на ${unansweredQuestions.length} вопросов.`;
+        feedbackElement.textContent += ` Пропущенных вопросов: ${unansweredQuestions.length}`;
     }
 
     questionNavigationItems.forEach(item => item.classList.add('disabled'));
