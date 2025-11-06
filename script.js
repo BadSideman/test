@@ -1,13 +1,12 @@
-// --- Глобальная переменная для отслеживания состояния прохождения теста ---
-let hasUserPassedTest = false; // Флаг, показывающий, пройден ли тест
-const STORAGE_KEY = 'testCompletionStatus'; // Ключ для localStorage
 
+let hasUserPassedTest = false; 
+const STORAGE_KEY = 'testCompletionStatus';
 const userInfoForm = document.getElementById('user-info-form');
 const surnameInput = document.getElementById('surname');
 const nameInput = document.getElementById('name');
 const patronymicInput = document.getElementById('patronymic');
 const startTestButton = document.getElementById('start-test-button');
-const alreadyPassedMessage = document.getElementById('already-passed-message'); // Сообщение "Тест уже пройден"
+const alreadyPassedMessage = document.getElementById('already-passed-message'); 
 const welcomeRulesSection = document.getElementById('welcome-rules-section');
 const questionNumberElement = document.getElementById('question-number');
 const timerContainer = document.getElementById('timer-container');
@@ -22,8 +21,7 @@ const scoreElement = document.getElementById('score');
 const feedbackElement = document.getElementById('feedback');
 const bottomNavigation = document.getElementById('bottom-navigation-buttons');
 const questionNavBar = document.getElementById('question-nav-bar');
-
-let fullName = ''; //Полное имя пользователя
+let fullName = ''; 
 const testQuestions = [
     {
         id: 1,
@@ -367,42 +365,33 @@ const testQuestions = [
     }
 
 ];
-
-let currentQuestionIndex = 0; // отслеживание текущего вопроса
-let score = 0; // хранит правильные ответы
-// selectedAnswers теперь хранит массив выбранных ответов: { questionId: [selectedOption1, selectedOption2, ...] }
+let currentQuestionIndex = 0; 
+let score = 0; 
 let selectedAnswers = {}; 
 let questionNavigationItems = [];
-
-// --- Таймер ---
 let timerInterval = null;
 let timeRemaining = 0;
-const TOTAL_TEST_TIME_SECONDS = 900; // 3 минуты
+const TOTAL_TEST_TIME_SECONDS = 900; 
 
-// --- Функция для проверки localStorage ---
+
 function checkTestCompletion() {
     const storedStatus = localStorage.getItem(STORAGE_KEY);
     if (storedStatus === 'passed') {
         hasUserPassedTest = true;
-        // Скрываем элементы для начала теста и показываем сообщение
         userInfoForm.style.display = 'none';
         welcomeRulesSection.style.display = 'none';
-        alreadyPassedMessage.style.display = 'block'; // Показываем сообщение
-        
-        // Скрываем все элементы, связанные с самим тестом и таймером
+        alreadyPassedMessage.style.display = 'block'; 
         timerContainer.style.display = 'none';
         questionContainer.style.display = 'none';
-        resultContainer.style.display = 'none'; // Скрываем результаты, если они не должны отображаться повторно
+        resultContainer.style.display = 'none';
     } else {
         hasUserPassedTest = false;
-        // Если тест еще не пройден, показываем стандартный интерфейс
-        alreadyPassedMessage.style.display = 'none'; // Скрываем сообщение
+        alreadyPassedMessage.style.display = 'none'; 
         userInfoForm.style.display = 'block';
         welcomeRulesSection.style.display = 'block';
     }
 }
 
-// --- Форматирование времени ---
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -411,7 +400,6 @@ function formatTime(seconds) {
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-// --- Обновление таймера ---
 function updateTimer() {
     if (timeRemaining <= 0) {
         clearInterval(timerInterval);
@@ -445,24 +433,18 @@ function stopTimer() {
     timerContainer.style.display = 'none';
 }
 
-// --- Функции для навигации ---
 function updateNavigationButtons() {
     const currentQuestionId = testQuestions[currentQuestionIndex].id;
     const answersForCurrentQuestion = selectedAnswers[currentQuestionId] || []; 
-
-    // Кнопка "Назад"
     if (currentQuestionIndex === 0) {
         prevButton.style.visibility = 'hidden';
     } else {
         prevButton.style.visibility = 'visible';
     }
-
-    // Кнопка "Следующий" / "Завершить"
-    if (currentQuestionIndex < testQuestions.length - 1) { // Если это НЕ последний вопрос
+    if (currentQuestionIndex < testQuestions.length - 1) {
         nextButton.disabled = false;
         nextButton.style.opacity = 1;
-    } else { // Если это последний вопрос
-        // Активна только если выбран хотя бы один ответ
+    } else {
         if (answersForCurrentQuestion.length > 0) {
             nextButton.disabled = false;
             nextButton.style.opacity = 1;
@@ -471,8 +453,6 @@ function updateNavigationButtons() {
             nextButton.style.opacity = 0.6;
         }
     }
-
-    // Текст кнопки
     if (currentQuestionIndex === testQuestions.length - 1) {
         nextButton.textContent = 'Завершить тест';
     } else {
@@ -480,16 +460,13 @@ function updateNavigationButtons() {
     }
 }
 
-// --- Обновление стилей номеров вопросов ---
 function updateQuestionNavStatus() {
     questionNavigationItems.forEach((item, index) => {
         const question = testQuestions[index];
         const questionId = question.id;
         const answers = selectedAnswers[questionId] || [];
-
         item.classList.remove('active', 'answered', 'skipped', 'disabled');
-
-        if (timerInterval === null) { // Если тест завершен
+        if (timerInterval === null) {
             if (answers.length === 0) { 
                 item.classList.add('skipped');
             } else {
@@ -503,7 +480,6 @@ function updateQuestionNavStatus() {
                 item.classList.add('skipped');
             }
         }
-
         if (index === currentQuestionIndex) {
             item.classList.add('active');
         }
@@ -514,7 +490,6 @@ function goToQuestion(index) {
     if (index < 0 || index >= testQuestions.length) {
         return;
     }
-
     currentQuestionIndex = index;
     displayQuestion();
     updateNavigationButtons();
@@ -524,7 +499,6 @@ function goToQuestion(index) {
 function initializeQuestionNavBar() {
     questionNavBar.innerHTML = '';
     questionNavigationItems = [];
-
     testQuestions.forEach((question, index) => {
         const navItem = document.createElement('div');
         navItem.classList.add('question-nav-item');
@@ -536,13 +510,11 @@ function initializeQuestionNavBar() {
                 goToQuestion(index);
             }
         });
-
         questionNavBar.appendChild(navItem);
         questionNavigationItems.push(navItem); 
     });
 }
 
-// --- ИЗМЕНЕНА ФУНКЦИЯ STARTTEST ---
 function startTest() {
     const surname = surnameInput.value.trim();
     const name = nameInput.value.trim();
@@ -552,70 +524,47 @@ function startTest() {
         alert("Пожалуйста, введите вашу Фамилию и Имя.");
         return;
     }
-
     fullName = `${surname} ${name} ${patronymic}`.trim();
-
-    // --- СКРЫВАЕМ ВСЕ, ЧТО ДО ТЕСТА ---
     userInfoForm.style.display = 'none';
     welcomeRulesSection.style.display = 'none';
-
-    // --- ПОКАЗЫВАЕМ ЭЛЕМЕНТЫ ТЕСТА ---
     questionContainer.style.display = 'block';
     bottomNavigation.style.display = 'flex';
-
     currentQuestionIndex = 0;
     score = 0;
     selectedAnswers = {}; 
     startTimer();
-
     initializeQuestionNavBar();
     displayQuestion();
     updateNavigationButtons();
     updateQuestionNavStatus();
-
-    // --- ЗАПИСЫВАЕМ В localStorage, ЧТО ТЕСТ ПРОЙДЕН ---
     localStorage.setItem(STORAGE_KEY, 'passed');
-    hasUserPassedTest = true; // Обновляем флаг
+    hasUserPassedTest = true;
 }
 
 function displayQuestion() {
     const question = testQuestions[currentQuestionIndex];
     questionNumberElement.textContent = `Вопрос ${currentQuestionIndex + 1} из ${testQuestions.length}`;
-
     questionTextElement.textContent = question.question;
     answerOptionsElement.innerHTML = '';
-    // 1. УДАЛЕНИЕ СТАРОГО КОНТЕЙНЕРА С КАРТИНКОЙ (САМОЕ ВАЖНОЕ ИЗМЕНЕНИЕ)
     const existingImageContainer = document.getElementById('question-image-container');
     if (existingImageContainer) {
         existingImageContainer.remove();
     }
-
-    // 2. ДОБАВЛЕНИЕ НОВОЙ КАРТИНКИ (если есть)
     if (question.imageUrl) {
         const imageContainer = document.createElement('div');
         imageContainer.id = 'question-image-container'; 
-
         const imgElement = document.createElement('img');
         imgElement.src = question.imageUrl;
         imgElement.alt = `Изображение к вопросу ${question.id}`;
         imgElement.classList.add('question-image'); 
-
         imageContainer.appendChild(imgElement);
-        
-        // Вставляем контейнер с картинкой перед блоком с вариантами ответов
-        // Для этого нужно найти ссылку на answerOptionsElement и вставить перед ним.
         answerOptionsElement.parentNode.insertBefore(imageContainer, answerOptionsElement);
-    }
-    // --- КОНЕЦ ДОБАВЛЕНИЯ КАРТИНКИ ---
-    
-
+    } 
     question.options.forEach((option, index) => {
         const wrapper = document.createElement('div');
         wrapper.classList.add('answer-option-wrapper');
         wrapper.dataset.id = question.id; 
         wrapper.dataset.option = option;
-
-        // input type="checkbox"
         const checkboxInput = document.createElement('input');
         checkboxInput.type = 'checkbox'; 
         checkboxInput.name = `question-${question.id}`; 
@@ -623,25 +572,18 @@ function displayQuestion() {
         checkboxInput.value = option;
         checkboxInput.dataset.id = question.id;
         checkboxInput.dataset.option = option;
-
-        // custom-checkbox
         const customCheckbox = document.createElement('div');
         customCheckbox.classList.add('custom-checkbox');
-
         const label = document.createElement('label');
         label.htmlFor = `option-${question.id}-${index}`;
         label.textContent = option;
-
         wrapper.appendChild(checkboxInput);
         wrapper.appendChild(customCheckbox);
         wrapper.appendChild(label);
         answerOptionsElement.appendChild(wrapper);
     });
-
-    // --- Восстанавливаем состояние вопроса ---
     const currentQuestionId = question.id;
     const savedAnswers = selectedAnswers[currentQuestionId] || []; 
-
     if (savedAnswers.length > 0) {
         savedAnswers.forEach(savedOption => {
             const savedWrapper = answerOptionsElement.querySelector(`.answer-option-wrapper[data-id="${currentQuestionId}"][data-option="${savedOption}"]`);
@@ -651,37 +593,27 @@ function displayQuestion() {
             }
         });
     }
-
-    // Если тест завершен (timerInterval === null), блокируем все ответы
     if (timerInterval === null) {
         answerOptionsElement.querySelectorAll('.answer-option-wrapper').forEach(wrapper => {
             wrapper.classList.add('disabled');
         });
     }
-    // --- ---
-
     updateNavigationButtons();
     updateQuestionNavStatus();
 }
 
-// --- КОРРЕКТНЫЙ ОБРАБОТЧИК ДЛЯ ЧЕКБОКСОВ ---
 function selectAnswer(event) {
     const targetWrapper = event.target.closest('.answer-option-wrapper');
     
     if (!targetWrapper || targetWrapper.classList.contains('disabled')) {
         return;
     }
-
     const questionId = parseInt(targetWrapper.dataset.id);
     const selectedOption = targetWrapper.dataset.option;
     const checkboxInput = targetWrapper.querySelector('input[type="checkbox"]'); 
-    const question = testQuestions.find(q => q.id === questionId); // Находим сам вопрос
-
+    const question = testQuestions.find(q => q.id === questionId); 
     let currentSelectedAnswers = selectedAnswers[questionId] || [];
-
-    // --- ЛОГИКА ДЛЯ ОГРАНИЧЕНИЯ ВЫБОРА ОДНОГО ОТВЕТА ---
-    if (!question.isMultipleChoice) { // Если это вопрос с одним выбором
-        // Если кликнули на уже выбранный ответ, снимаем его
+    if (!question.isMultipleChoice) { 
         if (checkboxInput.checked) {
             const indexToRemove = currentSelectedAnswers.indexOf(selectedOption);
             if (indexToRemove > -1) {
@@ -690,24 +622,18 @@ function selectAnswer(event) {
             checkboxInput.checked = false; 
             targetWrapper.classList.remove('selected');
         } else {
-            // Если кликнули на новый ответ:
-            // 1. Снимаем галочку и класс 'selected' со ВСЕХ ответов этого вопроса
             answerOptionsElement.querySelectorAll(`.answer-option-wrapper[data-id="${questionId}"]`).forEach(wrapper => {
-                // Снимаем только если это НЕ тот wrapper, на который кликнули
                 if (wrapper !== targetWrapper) { 
                     wrapper.classList.remove('selected');
                     wrapper.querySelector('input[type="checkbox"]').checked = false;
                 }
             });
-            
-            // 2. Выбираем новый ответ
-            currentSelectedAnswers = [selectedOption]; // Обновляем массив, оставляя только новый выбор
+            currentSelectedAnswers = [selectedOption]; 
             checkboxInput.checked = true; 
             targetWrapper.classList.add('selected');
         }
-    } else { // Если это вопрос с множественным выбором
+    } else { 
         if (checkboxInput.checked) {
-            // Чекбокс был отмечен, а теперь мы кликнули, чтобы его снять
             const indexToRemove = currentSelectedAnswers.indexOf(selectedOption);
             if (indexToRemove > -1) {
                 currentSelectedAnswers.splice(indexToRemove, 1);
@@ -715,7 +641,6 @@ function selectAnswer(event) {
             checkboxInput.checked = false; 
             targetWrapper.classList.remove('selected');
         } else {
-            // Чекбокс не был отмечен, а теперь мы кликнули, чтобы его отметить
             if (!currentSelectedAnswers.includes(selectedOption)) {
                 currentSelectedAnswers.push(selectedOption);
             }
@@ -723,9 +648,7 @@ function selectAnswer(event) {
             targetWrapper.classList.add('selected');
         }
     }
-    
     selectedAnswers[questionId] = currentSelectedAnswers;
-
     updateNavigationButtons();
     updateQuestionNavStatus();
 }
@@ -734,15 +657,12 @@ function handleNextButtonClick() {
     const currentQuestion = testQuestions[currentQuestionIndex];
     const currentQuestionId = currentQuestion.id;
     const answersForCurrentQuestion = selectedAnswers[currentQuestionId] || [];
-
     if (nextButton.disabled && currentQuestionIndex < testQuestions.length - 1) return;
-
     if (currentQuestionIndex === testQuestions.length - 1) {
         stopTimer();
         showResults();
         return;
     }
-
     currentQuestionIndex++;
     displayQuestion();
     updateNavigationButtons();
@@ -752,37 +672,28 @@ function handleNextButtonClick() {
 function showResults() {
     questionContainer.style.display = 'none';
     resultContainer.style.display = 'block';
-
     let correctAnswersCount = 0;
     const unansweredQuestions = []; 
-
     testQuestions.forEach(q => {
         const savedAnswers = selectedAnswers[q.id] || [];
         const correctAnswers = q.correctAnswer;
-
-        if (savedAnswers.length === 0) { // Если ни один ответ не выбран
+        if (savedAnswers.length === 0) { 
             unansweredQuestions.push(q);
         } else {
-            // Подсчет правильных ответов для чекбоксов
             const isCorrect = correctAnswers.length === savedAnswers.length && 
                               correctAnswers.every(correct => savedAnswers.includes(correct));
-            
             if (isCorrect) {
                 correctAnswersCount++;
             }
         }
     });
-
     const totalQuestions = testQuestions.length;
     const percentage = (correctAnswersCount / totalQuestions) * 100;
-
     scoreElement.innerHTML = `<b>${fullName}</b><br>${correctAnswersCount} из ${totalQuestions} (${percentage.toFixed(1)}%)`;
     feedbackElement.textContent = getFeedback(percentage);
-
     if (unansweredQuestions.length > 0) {
         feedbackElement.textContent += ` Пропущенных вопросов: ${unansweredQuestions.length}`;
     }
-
     questionNavigationItems.forEach(item => item.classList.add('disabled'));
 }
 
@@ -798,24 +709,16 @@ function getFeedback(percentage) {
     }
 }
 
-// --- Обработчики событий ---
 startTestButton.addEventListener('click', startTest);
-
 answerOptionsElement.addEventListener('click', selectAnswer);
-
 nextButton.addEventListener('click', handleNextButtonClick);
-
 prevButton.addEventListener('click', () => {
     if (currentQuestionIndex > 0) {
         goToQuestion(currentQuestionIndex - 1);
     }
 });
-
-// --- ПРОВЕРКА СОСТОЯНИЯ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ---
 document.addEventListener('DOMContentLoaded', () => {
-    checkTestCompletion(); // Вызываем функцию проверки localStorage при полной загрузке DOM
-    
-    // Изначально скрываем кнопки навигации, если тест не начат
+    checkTestCompletion(); 
     prevButton.style.visibility = 'hidden';
     nextButton.style.opacity = 0.6;
     nextButton.disabled = true;

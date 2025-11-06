@@ -1,6 +1,3 @@
-/* ========================================= */
-/* ГЛОБАЛЬНЫЕ НАСТРОЙКИ И ТИПОГРАФИКА */
-/* ========================================= */
 body {
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -30,16 +27,13 @@ h1 {
     font-weight: 700;
 }
 
-/* ========================================= */
-/* СТИЛИ ДЛЯ ПРИВЕТСТВИЯ И ПРАВИЛ */
-/* ========================================= */
 #welcome-rules-section {
-    background-color: rgba(241, 248, 233, 0.85); /* Светло-зеленый фон */
-    border: 1px solid rgba(178, 235, 238, 0.6); /* Бирюзовая рамка */
+    background-color: rgba(241, 248, 233, 0.85); 
+    border: 1px solid rgba(178, 235, 238, 0.6); 
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 30px; /* Отступ от следующего блока */
-    text-align: left; /* Текст по левому краю */
+    margin-bottom: 30px; 
+    text-align: left; 
 }
 
 #welcome-rules-section p {
@@ -58,8 +52,8 @@ h1 {
 }
 
 #welcome-rules-section ul {
-    list-style-type: disc; /* Маркированный список */
-    padding-left: 25px; /* Отступ для маркеров */
+    list-style-type: disc; 
+    padding-left: 25px; 
     margin: 0;
 }
 
@@ -70,16 +64,10 @@ h1 {
     line-height: 1.4;
 }
 
-/* ========================================= */
-/* СТИЛИ ДЛЯ ТАЙМЕРА */
-/* ========================================= */
 #timer-container {
     text-align: right;
     margin-bottom: 15px;
     padding: 8px 15px;
-    /*background-color: rgba(255, 255, 255, 0.7);*/
-    /*border-radius: 5px;
-    border: 1px solid rgba(178, 235, 238, 0.5);*/
     display: inline-block;
 }
 
@@ -90,9 +78,6 @@ h1 {
     margin: 0;
 }
 
-/* ========================================= */
-/* СТИЛИ ДЛЯ ФОРМЫ ВВОДА ФИО */
-/* ========================================= */
 #user-info-form {
     margin-bottom: 25px;
     text-align: left;
@@ -157,9 +142,6 @@ h1 {
     transform: translateY(-1px);
 }
 
-/* ========================================= */
-/* СТИЛИ ДЛЯ ВОПРОСОВ И ОТВЕТОВ */
-/* ========================================= */
 #question-container {
     margin-bottom: 20px;
     text-align: left;
@@ -179,7 +161,6 @@ h1 {
     text-align: left;
 }
 
-/* БЛОК: НАВИГАЦИЯ ПО НОМЕРАМ ВОПРОСОВ */
 #question-nav-bar {
     display: flex;
     flex-wrap: wrap;
@@ -203,40 +184,35 @@ h1 {
     font-size: 14px;
     font-weight: bold;
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-    border: 2px solid rgba(167, 199, 231, 0.7); /* Синий контур по умолчанию */
+    border: 2px solid rgba(167, 199, 231, 0.7); 
     color: rgba(0, 77, 64, 0.8);
 }
 
-/* Стили для АКТИВНОГО вопроса */
 .question-nav-item.active {
-    background-color: rgba(204, 204, 204, 0.8); /* Серый фон */
+    background-color: rgba(204, 204, 204, 0.8); 
     color: #333; 
-    border-color: #42a5f5; /* Синяя рамка */
+    border-color: #42a5f5;
     border-width: 3px; 
-    box-shadow: 0 0 8px rgba(66, 165, 245, 0.7); /* Синяя тень */
+    box-shadow: 0 0 8px rgba(66, 165, 245, 0.7); 
 }
 
-/* Отвеченный вопрос (синий) */
 .question-nav-item.answered {
     background-color: rgba(66, 165, 245, 0.8);
     border-color: rgba(66, 165, 245, 1);
     color: white;
 }
 
-/* Пропущенный вопрос (белый) */
 .question-nav-item.skipped {
     background-color: rgba(255, 255, 255, 0.9);
     border-color: rgba(204, 204, 204, 0.8);
     color: rgba(0, 77, 64, 0.8);
 }
 
-/* При наведении */
 .question-nav-item:not(.disabled):hover {
     background-color: rgba(227, 242, 253, 0.9);
     border-color: rgba(66, 165, 245, 0.9);
 }
 
-/* Отключенные номера */
 .question-nav-item.disabled {
     cursor: default;
     opacity: 0.5;
@@ -251,7 +227,6 @@ h1 {
     font-weight: 500;
 }
 
-/* Стили для чекбоксов и их меток */
 .answer-option-wrapper {
     display: flex;
     align-items: center;
@@ -270,39 +245,33 @@ h1 {
     border-color: rgba(158, 158, 158, 0.8);
 }
 
-/* Стиль для выбранного ответа (подсвечивает всю строку) */
 .answer-option-wrapper.selected {
     background-color: rgba(227, 242, 253, 0.9);
     border-color: rgba(66, 165, 245, 0.8);
     color: rgba(30, 136, 229, 0.9);
 }
 
-/* Стиль для правильного ответа */
 .answer-option-wrapper.correct {
     background-color: rgba(200, 230, 201, 0.9);
     border-color: rgba(76, 175, 80, 0.8);
     color: rgba(27, 94, 32, 0.9);
 }
 
-/* Стиль для неправильного ответа */
 .answer-option-wrapper.incorrect {
     background-color: rgba(255, 235, 238, 0.9);
     border-color: rgba(239, 83, 80, 0.8);
     color: rgba(183, 28, 28, 0.9);
 }
 
-/* Стиль для отключенных ответов */
 .answer-option-wrapper.disabled {
     cursor: default;
     opacity: 0.6;
 }
 
-/* Скрываем стандартные чекбоксы */
 .answer-option-wrapper input[type="checkbox"] {
     display: none;
 }
 
-/* Кастомный КВАДРАТ */
 .custom-checkbox {
     width: 20px;
     height: 20px;
@@ -314,54 +283,50 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    border-radius: 3px; /* Немного скругляем углы */
+    border-radius: 3px; 
 }
 
-/* Символ галочки внутри чекбокса */
 .custom-checkbox::after {
     content: '';
     display: block;
     position: absolute;
-    top: 2px; /* Слегка опущена для лучшего центрирования */
+    top: 2px;
     left: 6px;
     width: 6px;
     height: 12px;
-    border: solid rgb(209, 11, 11); /* Цвет галочки */
-    border-width: 0 3px 3px 0; /* Создает угол галочки */
-    transform: rotate(45deg) scale(0); /* По умолчанию скрыта и повернута */
+    border: solid rgb(209, 11, 11); 
+    border-width: 0 3px 3px 0; 
+    transform: rotate(45deg) scale(0); 
     transition: transform 0.2s ease-in-out;
-    background-color: transparent; /* Убедимся, что галочка не имеет фона */
+    background-color: transparent; 
 }
 
-/* Показываем галочку, когда чекбокс выбран */
 .answer-option-wrapper.selected .custom-checkbox::after {
-    transform: rotate(45deg) scale(1); /* Галочка становится видимой */
+    transform: rotate(45deg) scale(1); 
 }
 
-/* Стиль для правильного чекбокса */
+
 .answer-option-wrapper.correct .custom-checkbox {
-    border-color: rgba(76, 175, 80, 0.8); /* Зеленая рамка */
+    border-color: rgba(76, 175, 80, 0.8); 
 }
-/* Галочка для правильного ответа */
+
 .answer-option-wrapper.correct .custom-checkbox::after {
-    border-color: rgba(76, 175, 80, 0.9); /* Зеленая галочка */
+    border-color: rgba(76, 175, 80, 0.9); 
 }
 
-/* Стиль для неправильного чекбокса */
 .answer-option-wrapper.incorrect .custom-checkbox {
-    border-color: rgba(239, 83, 80, 0.8); /* Красная рамка */
-}
-/* Галочка для неправильного ответа */
-.answer-option-wrapper.incorrect .custom-checkbox::after {
-    border-color: rgba(239, 83, 80, 0.9); /* Красная галочка */
+    border-color: rgba(239, 83, 80, 0.8);
 }
 
-/* НОВАЯ СЕКЦИЯ: НИЖНЯЯ НАВИГАЦИЯ */
+.answer-option-wrapper.incorrect .custom-checkbox::after {
+    border-color: rgba(239, 83, 80, 0.9);
+}
+
 #bottom-navigation-buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-    border-top: 1px solid rgba(200, 230, 201, 0.5); /* Разделитель */
+    border-top: 1px solid rgba(200, 230, 201, 0.5); 
     padding-top: 15px;
 }
 
@@ -373,12 +338,11 @@ h1 {
     transition: background-color 0.3s ease, transform 0.1s;
     flex-grow: 1;
     margin: 0 5px;
-    border: 1px solid rgba(66, 165, 245, 0.8); /* Общая рамка */
+    border: 1px solid rgba(66, 165, 245, 0.8);
 }
 
-/* Кнопка "Назад" */
 #prev-button {
-    background-color: rgba(227, 242, 253, 0.9); /* Светло-голубой */
+    background-color: rgba(227, 242, 253, 0.9); 
     color: rgba(30, 136, 229, 0.9);
 }
 
@@ -386,7 +350,6 @@ h1 {
     background-color: rgba(144, 202, 249, 0.8);
 }
 
-/* Кнопка "Следующий/Завершить" */
 #next-button {
     background-color: rgba(0, 121, 107, 0.85);
     color: rgba(255, 255, 255, 0.95);
@@ -398,9 +361,6 @@ h1 {
     transform: translateY(-1px);
 }
 
-/* ========================================= */
-/* РЕЗУЛЬТАТЫ */
-/* ========================================= */
 #result-container {
     margin-top: 20px;
     padding: 20px;
@@ -428,11 +388,11 @@ h1 {
     font-style: italic;
 }
 
-/* СТИЛЬ ДЛЯ СООБЩЕНИЯ, ЧТО ТЕСТ УЖЕ ПРОЙДЕН */
+
 #already-passed-message {
-    background-color: rgba(255, 235, 238, 0.9); /* Светло-красный фон */
-    border: 1px solid rgba(239, 83, 80, 0.7); /* Красная рамка */
-    color: rgba(183, 28, 28, 0.9); /* Красный текст */
+    background-color: rgba(255, 235, 238, 0.9); 
+    border: 1px solid rgba(239, 83, 80, 0.7); 
+    color: rgba(183, 28, 28, 0.9); 
     padding: 20px;
     margin-bottom: 30px;
     border-radius: 5px;
@@ -449,27 +409,26 @@ h1 {
     text-align: left;
 }
 
-/* СТИЛИ ДЛЯ КАРТИНКИ ВОПРОСА */
 #question-image-container {
     margin-bottom: 20px;
-    text-align: left; /* Центрируем картинку */
-    padding: 0; /* Убираем внутренние отступы, если они мешают */
-    background-color: transparent; /* Фон контейнера */
-    border: none; /* Рамка контейнера */
+    text-align: left; 
+    padding: 0; 
+    background-color: transparent; 
+    border: none; 
 }
 
 .question-image {
-    max-width: 100%; /* Картинка не должна быть шире контейнера */
-    height: auto; /* Сохраняем пропорции */
-    display: block; /* Убирает лишние отступы под картинкой */
-    margin: 0 auto; /* Центрируем картинку, если она меньше максимальной ширины */
-    border-radius: 5px; /* Слегка скругляем углы */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Небольшая тень */
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
 }
 
-/* --- Адаптивность для картинок --- */
+
 @media (max-width: 768px) {
     .question-image {
-        max-width: 100%; /* На меньших экранах картинка будет занимать всю доступную ширину */
+        max-width: 100%; 
     }
 }
