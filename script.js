@@ -2,7 +2,6 @@
 let hasUserPassedTest = false; // Флаг, показывающий, пройден ли тест
 const STORAGE_KEY = 'testCompletionStatus'; // Ключ для localStorage
 
-// --- Получаем ссылки на все элементы DOM ---
 const userInfoForm = document.getElementById('user-info-form');
 const surnameInput = document.getElementById('surname');
 const nameInput = document.getElementById('name');
@@ -575,8 +574,8 @@ function startTest() {
     updateQuestionNavStatus();
 
     // --- ЗАПИСЫВАЕМ В localStorage, ЧТО ТЕСТ ПРОЙДЕН ---
-    /*localStorage.setItem(STORAGE_KEY, 'passed');
-    hasUserPassedTest = true; // Обновляем флаг*/
+    localStorage.setItem(STORAGE_KEY, 'passed');
+    hasUserPassedTest = true; // Обновляем флаг
 }
 
 function displayQuestion() {
